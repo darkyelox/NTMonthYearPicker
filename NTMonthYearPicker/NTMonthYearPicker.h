@@ -41,6 +41,14 @@ typedef enum {
 // Default is nil (Dec 31, 10000 in the UI)
 @property (nonatomic, retain) NSDate *maximumDate;
 
+// The color for the selection label
+// Default is [UIColor blackColor]
+@property (nonatomic, retain) UIColor *selectionColor;
+
+// The color for the selection label
+// Default is [UIColor grayColor]
+@property (nonatomic, retain) UIColor *outsideSelectionColor;
+
 // Sets the date to display in the date picker
 // If animated is YES, animate the wheels to display the new date
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;

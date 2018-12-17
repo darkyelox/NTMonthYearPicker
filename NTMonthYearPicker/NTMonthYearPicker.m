@@ -30,6 +30,8 @@
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSDate *minimumDate;
 @property (nonatomic, retain) NSDate *maximumDate;
+@property (nonatomic, retain) UIColor *selectionColor;
+@property (nonatomic, retain) UIColor *outsideSelectionColor;
 @property (nonatomic,assign) id<NTMonthYearPickerViewDelegate> pickerDelegate;
 
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;
@@ -55,6 +57,8 @@
 @synthesize date = _date;
 @synthesize minimumDate;
 @synthesize maximumDate;
+@synthesize selectionColor;
+@synthesize outsideSelectionColor;
 @synthesize pickerDelegate;
 
 // Default min/max year values used if minimumDate/maximumDate is not set
@@ -84,6 +88,9 @@ const NSInteger kMaxYear = 10000;
     self.dataSource = self;
     self.delegate = self;
     self.showsSelectionIndicator = YES;
+
+    self.selectionColor = [UIColor blackColor];
+    self.outsideSelectionColor = [UIColor grayColor];
 
     // Initialize default cached values
     [self initCachedValues];
@@ -214,6 +221,20 @@ const NSInteger kMaxYear = 10000;
     [self reloadAllComponents];
 }
 
+#pragma mark - Selection colors
+
+- (void)setSelectionColor:(UIColor *)selColor {
+    selectionColor = selColor;
+
+    [self reloadAllComponents];
+}
+
+- (void)setOutsideSelectionColor:(UIColor *)selColor {
+    outsideSelectionColor = selColor;
+
+    [self reloadAllComponents];
+}
+
 #pragma mark - Date <-> selection
 
 - (void)selectionFromDate:(BOOL)animated {
@@ -307,7 +328,7 @@ numberOfRowsInComponent:(NSInteger)component {
 
     // Set label text & color
     label.text = [(isYearComponent ? _years : _months) objectAtIndex:row];
-    label.textColor = (outOfBounds ? [UIColor grayColor] : [UIColor blackColor]);
+    label.textColor = (outOfBounds ? outsideSelectionColor : selectionColor);
 
     return label;
 }
