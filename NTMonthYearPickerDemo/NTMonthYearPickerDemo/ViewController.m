@@ -34,6 +34,9 @@ UIPopoverController *popupCtrl;
     [comps setMonth:1];
     [comps setYear:2000];
     picker.minimumDate = [cal dateFromComponents:comps];
+    
+    picker.selectionColor = [UIColor blueColor];
+    picker.outsideSelectionColor = [UIColor purpleColor];
 
     // Set maximum date to next month
     // This is optional; default is no max date

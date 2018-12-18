@@ -482,4 +482,12 @@ numberOfRowsInComponent:(NSInteger)component {
     _pickerView.maximumDate = maxDate;
 }
 
+- (void)setSelectionColor:(UIColor *)selectionColor {
+    _pickerView.selectionColor = selectionColor;
+}
+
+-(void)setOutsideSelectionColor:(UIColor *)outsideSelectionColor {
+    _pickerView.outsideSelectionColor = outsideSelectionColor;
+}
+
 @end
